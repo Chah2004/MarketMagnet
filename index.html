@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/icofont@1.0.0/main.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/icofont@1.0.0/dist/icofont.min.css" rel="stylesheet">
+	
+	<style type="text/css">
+		body{
+			overflow-x: hidden;
+		}
+		.link:hover{
+			color:white !important;  
+		}
+		.link {
+   			position: relative;
+    		text-decoration: none;
+    		color: #ECDCAC !important;
+		}
+
+		.link:after {
+    		content: '';
+		    position: absolute;
+		    width: 0;
+		    height: 2px;
+		    bottom: 0;
+		    left: 0;
+		    background-color: #B49C6C;
+		    transition: width 0.3s ease-in-out;
+		}
+
+		.link:hover:after {
+    		width: 100%;
+		}
+
+		.heading{
+			margin-top: 50px;
+			color: #584420 !important;
+			font-weight: bold;	
+		}
+		.text{
+			margin-top: 5px;
+			font-size: 28px;
+			color: #584420;
+			margin-right: 30px;
+		}
+		.button{
+			background-color: #584420 !important;
+			color: #ECDCAC;
+			border-color: #584420 !important;
+			box-shadow: 2px 2px 3px #584420 !important;
+			padding-top: 10px;
+			padding-bottom: 10px; 
+			padding-left: 30px; 
+			padding-right: 30px; 
+		}
+		.button:hover{
+			transform: translateY(-3PX) !important;
+			transition: all ease 0.3s !important;
+			background-color: #ECDCAC !important;
+			color: #584420 !important;
+			border-color: #584420 !important;
+			box-shadow: 2px 2px 3px #584420 !important;
+		}
+
+		.button2{
+			background-color: #ECDCAC;
+			color: #584420;
+			border-color: #ECDCAC !important;
+			box-shadow: 2px 2px 3px #ECDCAC !important;
+			padding-top: 5px;
+			padding-bottom: 5px; 
+			padding-left: 30px; 
+			padding-right: 30px; 
+		}
+		.button2:hover{
+			transform: translateY(-3PX) !important;
+			transition: all ease 0.3s !important;
+			background-color: white !important;
+			color: #584420 !important;
+			border-color: #ECDCAC !important;
+			box-shadow: 2px 2px 3px #ECDCAC !important;
+		}
+
+		
+
+
+		.image-container {
+		    flex: 1;
+		    text-align: center;
+		}
+
+		.image-container img {
+		    max-width: 100%;
+		    height: 350px;
+		    border-radius: 10px;
+		}
+
+		.paragraph-container {
+		    flex: 1;
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    padding: 10px;
+		}
+
+		.paragraph {
+		    cursor: pointer;
+		    padding: 10px;
+		    margin: 5px 0;
+		    border: 1px solid transparent;
+		}
+
+		.paragraph.selected {
+		    border: 1px solid #000;
+		    background-color: #f0f0f0;
+		}
+
+		.slider {
+		    overflow: hidden;
+		}
+
+		.cards {
+		    display: flex;
+		    transition: transform 0.5s ease-in-out;
+		}
+
+		.card {
+		    flex: 1 0 33.3333%;
+		    max-width: 33.3333%;
+		    position: relative;
+		    perspective: 1000px;
+		    height: 200px;
+		}
+
+		.card-front,
+		.card-back {
+		    position: absolute;
+		    width: 100%;
+		    backface-visibility: hidden;
+		    transition: transform 0.6s;
+		}
+
+		.card-front {
+		    
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    height: 200px; 
+		    width:100%; 
+		}
+
+		.card-back {
+		    background-color: #584420;
+		    color: white;
+		    transform: rotateY(180deg);
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    height: 200px;
+		}
+
+		.card:hover .card-front {
+		    transform: rotateY(180deg);
+		}
+
+		.card:hover .card-back {
+		    transform: rotateY(0deg);
+		}
+
+		.dots {
+		    text-align: center;
+		    margin-top: 20px;
+		}
+
+		.dot {
+		    height: 15px;
+		    width: 15px;
+		    margin: 0 5px;
+		    background-color: #bbb;
+		    border-radius: 50%;
+		    display: inline-block;
+		    transition: background-color 0.6s ease;
+		}
+
+		.dot:hover,
+		.dot.active {
+		    background-color: #717171;
+		}
+
+
+		.growth:hover{
+			transform: translateY(-7PX) !important;
+			transition: all ease 0.3s !important;
+			box-shadow: 0px 0px 15px #584420 !important;
+		}
+
+		.popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color:white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .popup-form.active {
+            display: block;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .close-btn {
+            background: #584420;
+            color: white;
+            border: none;
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        
+
+	</style>
+</head>
+<body>
+	<nav class="navbar sticky-top navbar-expand-lg " style="background-color:  #584420 !important;">
+  		<div class="container-fluid">
+    		<a class="navbar-brand text-light fs-3" href="#"><img src="images/logo2.png" height="90px" width="120px;"><!--<span style="color: #B49C6C">Text</span>Tech--></a>
+    		
+    		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+      			<ul class="navbar-nav me-auto ms-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;">
+        			<li class="nav-item">
+          				<a class="nav-link me-3 link" aria-current="page" href="#">Home</a>
+        			</li>
+        			<li class="nav-item">
+          				<a class="nav-link  me-2 link" href="#about">About Us</a>
+        			</li>
+        		`	<li class="nav-item">
+          				<a class="nav-link me-3 link " href="#projects">Our Projects</a>
+        			</li>
+        			<li class="nav-item">
+          				<a class="nav-link me-3 link " href="#services">Our Services</a>
+        			</li>
+        			<li class="nav-item">
+          				<a class="nav-link me-3 link" href="#growth">Growth</a>
+        			</li>
+      			</ul>
+    		</div>
+  		</div>	
+	</nav>
+
+
+
+	<header>
+	<div class="row">
+		<div class="col-md-12">
+			<img src="images\image2.jpg" height="330px;" width="100%">
+		</div>
+
+		<div class="row">
+			<div class="col-md-12" style="text-align: center;">
+				<h1 class="heading">WELCOME TO MARKET MAGNET</h1>
+				<p class="text"> Where attraction meets action.</p>
+				<p style="color: #584420 !important; margin: 20px;"> At Market Magnet, we specialize in transforming your business's online presence with innovative strategies, cutting-edge technology, and a deep understanding of digital trends. Our mission is to attract, engage, and convert your target audience, driving measurable results and ensuring your brand stands out in the digital landscape. Whether you're a small startup or an established enterprise, Market Magnet offers tailored solutions to meet your unique needs. </p>
+
+				<button type ="submit" class="button get-started-btn btn border border-2 shadow-lg fw-bold mt-3 mb-5" style="margin-right:30px;"><!--<i class="icofont-user me-2" style="color:#ECDCAC"></i>-->Contact Us</button>
+			</div>
+		</div>
+	</div>
+	</header>
+
+	<div class="overlay"></div>
+
+    <div class="popup-form">
+        <form style="color:black;" action="https://getform.io/f/paygxpma" method="POST">
+              <h2 style="color: #584420 !important;">Fill the form !</h2>
+            <input type="text" id="name" name="name" placeholder="Enter your name" class="form-control mt-3" required>
+            <br>
+            
+            <input type="email" id="email" name="email" placeholder="Enter your email" class="form-control" required>
+            <br>
+             <label class="mb-3" style="color: #584420;">
+                <input type="checkbox" id="terms" name="terms" required>
+                I agree to the Market Magnet terms and conditions</a>
+            </label>
+            <br>
+            <button type="submit">Submit</button>
+            <button type="button" class="close-btn">Close</button>
+        </form>
+    </div>
+
+     <script>
+    const getStartedBtn = document.querySelector('.get-started-btn');
+    const popupForm = document.querySelector('.popup-form');
+    const overlay = document.querySelector('.overlay');
+    const closeBtn = document.querySelector('.close-btn');
+    const form = document.querySelector('.popup-form form'); // Updated form selection
+
+    getStartedBtn.addEventListener('click', () => {
+        popupForm.classList.add('active');
+        overlay.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popupForm.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', () => {
+        popupForm.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    form.addEventListener('submit', (event) => {
+        if (!document.getElementById('terms').checked) {
+            event.preventDefault(); // Prevent form submission
+            alert('You must agree to the terms and conditions.');
+        } else {
+            alert('Your form has been submitted.');
+            // Form will be submitted automatically to the specified action URL
+        }
+    });
+</script>
+		
+
+
+	<section id="about" style="position: relative; padding-top: 100px;">
+	<div class="row pt-3 pb-5 ps-5 pe-5 mt-5 " style="background-color:#584420 !important; ">
+		<div class="col-md-12">
+			<h1 style="color: white; text-align: center; margin-bottom: 30px;">ABOUT US</h1>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<img src="images/image3.cms" width="100%" height="300px;" class="rounded-4">
+			</div>
+			<div class="col-md-6 ps-3" >
+				<div>
+				<p style="text-align: justify; color: white !important; margin-top: 35px; font-size: 17px; " >Welcome to <b>Market Magnet</b>, where digital innovation meets strategic marketing. Founded with a vision to empower businesses in the digital age, Market Magnet is dedicated to providing comprehensive digital marketing solutions that drive growth and success. Market Magnet is a team of passionate digital marketing professionals with diverse backgrounds in SEO, social media, content creation, and paid advertising. Our experts bring together years of experience and a deep understanding of the ever-evolving digital landscape. We pride ourselves on staying ahead of the curve, constantly learning and adapting to new trends and technologies.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+
+
+	<section id="projects" style="position: relative; padding: 60px;">
+	<div class="row">
+
+		<div class="col-md-12">
+			<h1 style="color: #584420; text-align: center; margin-top: 50px; margin-bottom: 20px;">OUR PROJECTS</h1>
+		</div>
+
+		<div class="col-md-6">
+	        <div class="image-container" style="padding-top: 80px !important;">
+	            <img id="displayedImage" src="images/image8.jpg" alt="Image 2">
+	        </div>
+	    </div>
+	    <div class="col-md-6">
+	        <div class="paragraph-container" style="color: #584420">
+	            <p id="para1" class="paragraph" onclick="showImage('images/image9.jpg', 'para1')" ><b>E-Commerce SEO Boost for Fashion Retailer</b><br>Trendy Threads, a leading fashion retailer, partnered with Market Magnet to enhance their online visibility and drive organic traffic to their e-commerce platform. Through comprehensive keyword research, content optimization, and technical SEO improvements, we successfully boosted their search engine rankings and increased online sales.</p>
+	            <p id="para2" class="paragraph selected" onclick="showImage('images/image8.jpg', 'para2')"><b>Social Media Revamp for Health and Wellness Brand</b><br>Purely Wellness, a prominent health and wellness brand, sought our expertise to elevate their social media presence and engagement. We developed a strategic content calendar, ran targeted ad campaigns, and collaborated with influencers to broaden their reach. Our efforts resulted in significant growth in social media followers and engagement rates, driving more traffic to their website.</p>
+	            <p id="para3" class="paragraph" onclick="showImage('images/image6.jpg', 'para3')"><b>PPC Campaign for Real Estate Firm</b><br>Dream Homes Realty aimed to generate high-quality leads through effective pay-per-click (PPC) advertising. By conducting thorough keyword research, designing compelling ad creatives, and implementing A/B testing, we optimized their PPC campaigns to achieve a substantial reduction in cost per lead and an impressive return on investment.</p>
+	        </div>
+	    </div>
+	</div>
+	</section>
+
+
+	<section id="services" style="position: relative; padding-top: 94px;">
+	<div class="row mb-5">
+		<div class="col-md-12">
+			<h1 style="text-align: center; color: #584420; margin: 50px;">OUR SERVICES</h1>
+		</div>
+        <div class="slider mt-5">
+            <div class="cards">
+                <div class="card me-1">
+                    <div class="card-front"><img src="images/image4.jpg" height="200px" width="100%"></div>
+                    <div class="card-back p-3" style="text-align: justify;"><p><b>Search Engine Optimization</b><br>Our SEO experts use proven strategies to enhance your website’s visibility on search engines. From keyword research and on-page optimization to technical SEO and link building, we ensure your site ranks higher and increasing your online presence.<br>
+                    <a href="https://www.fylehq.com/" target="_blank"><button class="button2 btn border border-2 shadow-lg fw-bold mt-1 mb-1" style="margin-right:30px;">Read More</button></a></p></div>
+                </div>
+                <div class="card me-1">
+                    <div class="card-front"><img src="images/image5.jpg" height="200px" width="100%" ></div>
+                    <div class="card-back p-3" style="text-align: justify;"><p><b>Content Marketing</b><br>This service focus on creating valuable, and relevants content to attract and retain a clearly defined audience. From blog posts and articles to infographics and videos, we develop a content strategy that positions your brand in your industry and fostering trust.<br>
+                    <a href="https://www.fylehq.com/" target="_blank"><button class="button2 btn border border-2 shadow-lg fw-bold mt-1 mb-1" style="margin-right:30px;">Read More</button></a></p></div>
+                </div>
+                <div class="card">
+                    <div class="card-front"><img src="images/image7.webp" height="200px" width="100%"></div>
+                    <div class="card-back p-3" style="text-align: justify;"><p><b>Social Media Marketing</b><br>Our services include content creation, community management, paid social ads, and analytics. Whether it's Facebook, Instagram, Twitter, LinkedIn, or another platform, we help you build a loyal following and boost engagement.<br>
+                    <a href="https://www.fylehq.com/" target="_blank"><button class="button2 btn border border-2 shadow-lg fw-bold mt-1 mb-1" style="margin-right:30px;" >Read More</button></a></p></div>
+                </div>
+                <div class="card me-1">
+                    <div class="card-front"><img src="images/image10.jpg" height="200px" width="100%"></div>
+                    <div class="card-back p-3" style="text-align: justify;"><p><b>Pay-Per-Click Advertising
+                    </b><br>Our PPC experts design and manage cost-effective ad campaigns on platforms like Google Ads and Bing Ads. Through keyword research, ad creation, and continuous optimization, we ensure your ads reach the right audience at the right time.<br>
+                   <a href="https://www.fylehq.com/" target="_blank"><button class="button2 btn border border-2 shadow-lg fw-bold mt-1 mb-1" style="margin-right:30px;">Read More</button></a></p></div>
+                </div>
+                <div class="card me-1">
+                    <div class="card-front"><img src="images/image11.jpg" height="200px" width="100%"></div>
+                    <div class="card-back p-3" style="text-align: justify;"><p><b>Email Marketing</b><br>Our email marketing services help you engage your audience with personalized, effective email campaigns. We handle everything from list segmentation and email design to automation and performance analysis.<br>
+                    <a href="https://www.fylehq.com/" target="_blank"><button class="button2 btn border border-2 shadow-lg fw-bold mt-1 mb-1" style="margin-right:30px;">Read More</button></a></p></div>
+                </div>
+                <div class="card">
+                    <div class="card-front"><img src="images/image12.jpg" height="200px" width="100%"></div>
+                    <div class="card-back  p-4" style="text-align: justify;"><p><b>Web Design and Development</b><br>Our web design and development services focus on building websites that are not only visually appealing but also optimized for performance and user experience. From responsive design and intuitive navigation to fast loading times, everthing is in it.<br>
+                    <a href="https://www.fylehq.com/" target="_blank"><button class="button2 btn border border-2 shadow-lg fw-bold mt-1 mb-1" style="margin-right:30px;">Read More</button></a></p></div>
+                </div>
+            </div>
+        </div>
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </div>
+    </section>
+
+
+
+    <section id="growth">
+    	<div class="row mt-5 mb-3 ms-3 me-2">
+    		<div class="col-md-12 mt-5 mb-3">
+    			<h1 style="text-align: center; color: #584420;">OUR COMPANY GROWTH</h1>
+    			<p style="text-align: justify; color: #584420; font-size: 18px;">At Market Magnet, our growth is a testament to our commitment to excellence and innovation in digital marketing. From humble beginnings, we have expanded our capabilities and client base, continuously adapting to industry trends and technological advancements. Our success is built on a foundation of client satisfaction, measurable results, and a passionate team dedicated to driving business growth through strategic digital initiatives. </p>
+    		</div>
+    	</div>
+
+    	<div class="row  mb-5 ms-3">
+    		<div class="col-md-3 pe-5 ps-5">
+    			<div  class="growth" style="margin: 20px; padding: 20px; background-color: #584420; color: white; ">
+    				<center><h4><i class="icofont-heart-alt" style="color: #ECDCAC;"></i></h4>
+	    			<h3>199+</h3>
+	    			<p> Satisfied Customers</p></center>
+	    		</div>
+    		</div>
+    		<div class="col-md-3 pe-5 ps-5">
+    			<div  class="growth" style="margin: 20px; padding: 20px; background-color: #584420; color: white;">
+    				<center><h4><i class="icofont-clock-time" style="color: #ECDCAC;"></i></h4>
+	    			<h3>1591+</h3>
+	    			<p> Days of operation</p></center>
+	    		</div>
+    		</div>
+    		<div class="col-md-3 pe-5 ps-5">
+    			<div class="growth" style="margin: 20px; padding: 20px; background-color: #584420; color: white;">
+    				<center><h4><i class="icofont-check-circled" style="color: #ECDCAC;"></i></h4>
+	    			<h3>283+</h3>
+	    			<p>Complete Projects</p></center>
+	    		</div>
+    		</div>
+    		<div class="col-md-3 pe-5 ps-5">
+    			<div class="growth" style="margin: 20px; padding: 20px; background-color: #584420; color: white;">
+    				<center><h4><i class="icofont-trophy-alt" style="color: #ECDCAC;"></i></h4>
+	    			<h3>75+</h3>
+	    			<p>Win Awards</p></center>
+	    		</div>
+    		</div>
+    	</div>
+
+    </section>
+
+
+    <div class="row ps-5 pe-5 pt-3 pb-1" style="background-color:  #584420; color: #ECDCAC;">
+    	<div class="col-md-7">
+    	<p class="fs-5"><i class="icofont-copyright me-2"></i>2024 All Rights Reserved By <span style="color:#B49C6C">Market Magnet</span></p>
+    	</div>
+    	<div class="col-md-5 fs-5" style="text-align: right;">
+    		<a href="https://www.instagram.com/" style="text-decoration: none;" class="social-icon"><i class="icofont-instagram me-3" style="color:#ECDCAC"></i></a>
+			<a href="https://www.linkedin.com/home" style="text-decoration: none;" class="social-icon"><i class="icofont-linkedin me-3" style="color:#ECDCAC"></i></a>
+			<a href="https://twitter.com/" style="text-decoration: none;" class="social-icon"><i class="icofont-twitter me-3" style="color:#ECDCAC"></i></a>
+			<a href="https://www.youtube.com/" style="text-decoration: none;" class="social-icon"><i class="icofont-youtube-play me-3" style="color:#ECDCAC"></i></a>
+			<a href="https://www.facebook.com/" style="text-decoration: none;" class="social-icon"><i class="icofont-facebook me-3" style="color:#ECDCAC"></i></a>
+		</div>
+    </div>
+
+
+    
+
+
+
+	<script type="text/javascript">
+		function showImage(imageSrc, paragraphId) {
+		const displayedImage = document.getElementById('displayedImage');
+		displayedImage.src = imageSrc;
+
+		const paragraphs = document.querySelectorAll('.paragraph');
+		paragraphs.forEach(paragraph => {
+		paragraph.classList.remove('selected');
+		});
+
+		const selectedParagraph = document.getElementById(paragraphId);
+		selectedParagraph.classList.add('selected');
+		}
+
+		// Set default selected paragraph and image on page load
+		window.onload = function() {
+		    document.getElementById('para2').click();
+		};
+
+
+		let slideIndex = 1;
+		showSlides(slideIndex);
+
+		function currentSlide(n) {
+		    showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+		    let i;
+		    let slides = document.getElementsByClassName("card");
+		    let dots = document.getElementsByClassName("dot");
+		    if (n > dots.length) {slideIndex = 1}
+		    if (n < 1) {slideIndex = dots.length}
+		    for (i = 0; i < dots.length; i++) {
+		        dots[i].className = dots[i].className.replace(" active", "");
+		    }
+		    dots[slideIndex-1].className += " active";
+		    document.querySelector(".cards").style.transform = `translateX(${-(slideIndex-1) * 100}%)`;
+		}
+
+	</script>
+</body>
+</html>
